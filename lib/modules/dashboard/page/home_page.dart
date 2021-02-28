@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'bloc/home/note_bloc.dart';
+import 'package:nodes/modules/dashboard/bloc/home/note_bloc.dart';
+import 'package:nodes/modules/dashboard/models/node.dart';
 import 'details_note.dart';
-import 'node.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -40,8 +42,8 @@ class HomePage extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: state.listNodes.length,
                             itemBuilder: (context, index) {
-                              return state.listNodes[index].pathImage.isNotEmpty ? listTileWithImage(context, state.listNodes[index])
-                                  : listTileWithoutImage(context, state.listNodes[index]);
+                             return state.listNodes[index].pathImage.isNotEmpty ? listTileWithImage(context, state.listNodes[index])
+                                 : listTileWithoutImage(context, state.listNodes[index]);
                             },
                           )
                       );
@@ -58,6 +60,7 @@ class HomePage extends StatelessWidget {
                     builder: (context) => DetailsNote(note: NoteView(title: 'title',
                         description: 'description', pathImage: '')))),
                 child: Icon(Icons.add),
+
               ),
             )
           ),
@@ -81,9 +84,10 @@ class HomePage extends StatelessWidget {
                   pathImage: note.pathImage,
                   date: note.date
               )
+
           )
       )),
-      leading: Image.asset(note.pathImage),
+      leading: Image.file(File(note.pathImage)),
       title: Text('${note.title}', maxLines: 1),
       subtitle: Text('${note.description}', maxLines: 2),
       trailing: Text('${DateFormat('MM.dd').format(note.date)}'),

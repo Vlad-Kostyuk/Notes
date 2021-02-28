@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nodes/node.dart';
-import '../../db.dart';
+import 'package:nodes/modules/dashboard/models/node.dart';
+import 'package:nodes/untils/repository/db.dart';
 
 part 'note_bloc.freezed.dart';
 part 'note_event.dart';

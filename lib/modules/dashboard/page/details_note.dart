@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nodes/node.dart';
-
-import 'bloc/home/note_bloc.dart';
+import 'package:nodes/modules/dashboard/bloc/home/note_bloc.dart';
+import 'package:nodes/modules/dashboard/models/node.dart';
 
 class DetailsNote extends StatefulWidget {
   final NoteView note;
@@ -63,11 +61,7 @@ class _DetailsNoteState extends State<DetailsNote> {
                 )
             ),
             imagePath.isNotEmpty
-                ? Image.asset(
-                    imagePath,
-                    height: 200,
-                    width: 200,
-                  )
+                ? Image.file(File(imagePath), width: 200, height: 100)
                 : Container(),
             RaisedButton(
               onPressed: () {
